@@ -4,3 +4,4 @@ import random
 import sys
 import scripts.TypingTestDB
 
+
