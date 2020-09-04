@@ -4,7 +4,7 @@ import glob
 
 class TypingTestDB:  
     def __init__(self):
-        self.DB_NAME = "\db\TypingTest_DB.db"
+        self.DB_NAME = r"\db\TypingTest_DB.db"
 
     def directory_path(self):
         curr_file_path = os.path.dirname(os.path.abspath(__file__))
@@ -22,8 +22,3 @@ class TypingTestDB:
         conn.close()
         text = rows[0][0]
         return text
-
-    if __name__ == "__main__":
-        db = TypingTestDB()
-        test = db.search(entry_id=1)
-        
