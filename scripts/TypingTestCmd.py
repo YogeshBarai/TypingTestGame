@@ -70,19 +70,19 @@ class TypingTestCmd:
         statement = self.db.search(random_id)
         return statement
 
-if __name__ == "__main__":
-    tt_cmd = TypingTestCmd()
-    args_opt = tt_cmd.parse_arguments()
-    file_content = ""
-    if args_opt.version:
-        tt_cmd.get_version()
-        sys.exit(0)
-    elif args_opt.file:
-        file_content = tt_cmd.get_file(args_opt.file)
-    elif args_opt.id:
-        file_content = tt_cmd.get_db_text_by_id(args_opt.id)
-    elif args_opt.difficulty:
-        file_content = tt_cmd.set_difficulty_level(args_opt.difficulty)
-    else:
-        print("Input correct arguments")
-    print(file_content)
+    def get_text(self):
+        args_opt = self.parse_arguments()
+        file_content = ""
+        if args_opt.version:
+            self.get_version()
+            sys.exit(0)
+        elif args_opt.file:
+            file_content = self.get_file(args_opt.file)
+        elif args_opt.id:
+            file_content = self.get_db_text_by_id(args_opt.id)
+        elif args_opt.difficulty:
+            file_content = self.set_difficulty_level(args_opt.difficulty)
+        else:
+            print("Input correct arguments")
+        
+        return file_content
