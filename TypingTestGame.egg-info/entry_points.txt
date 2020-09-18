@@ -1,0 +1,3 @@
+[console_scripts]
+TypingTestGame = TypingTestGame.__main__:main
+

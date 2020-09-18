@@ -14,8 +14,15 @@ setup(
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
     packages=find_packages(),
+    include_package_data=True,
+    install_requires=["windows-curses", "sqlite"],
     classifiers=[
         "Programming Language :: Python :: 3.8",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     ],
+    entry_points={
+        "console_scripts": [
+            "TypingTestGame=TypingTestGame.__main__:main",
+        ]
+    },
 )
