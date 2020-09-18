@@ -15,7 +15,14 @@ class TypingTestCalculations:
         return time.time() - starttime
 
     def get_speed(self, wordslist, starttime):
-        return "{0:.2f}".format(60 * len(wordslist / self.get_elapsed_time(starttime)))
+        return "{0:.2f}".format(60 * len(wordslist) / self.get_elapsed_time(starttime))
 
     def get_required_lines(self, orgtext, terminalwidth):
         return int(math.ceil(len(orgtext) / terminalwidth))
+    
+    def get_space_count(self, i, ogtext):
+        count = 0
+        while ogtext[i] == " ":
+            i += 1
+            count += 1
+        return count

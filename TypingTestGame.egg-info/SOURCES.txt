@@ -1,0 +1,8 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+TypingTestGame.egg-info/PKG-INFO
+TypingTestGame.egg-info/SOURCES.txt
+TypingTestGame.egg-info/dependency_links.txt
+TypingTestGame.egg-info/top_level.txt

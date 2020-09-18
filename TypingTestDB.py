@@ -4,7 +4,7 @@ import glob
 
 class TypingTestDB:  
     def __init__(self):
-        self.DB_NAME = r"\db\TypingTest_DB.db"
+        self.DB_NAME = r"\TypingTestGame\db\TypingTest_DB.db"
 
     def directory_path(self):
         curr_file_path = os.path.dirname(os.path.abspath(__file__))
