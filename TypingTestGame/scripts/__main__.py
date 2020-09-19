@@ -1,4 +1,4 @@
-from TypingTestApp import TypingTestApp
+import TypingTestApp
 
 if __name__ == "__main__":
-    OBJ = TypingTestApp()
+    OBJ = TypingTestApp.TypingTestApp()

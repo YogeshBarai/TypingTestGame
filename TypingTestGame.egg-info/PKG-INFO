@@ -1,14 +1,13 @@
 Metadata-Version: 2.1
 Name: TypingTestGame
-Version: 0.0.1
+Version: 0.0.8
 Summary: A command line tool to improve typing speed
-Home-page: UNKNOWN
+Home-page: https://github.com/YogeshBarai
 Author: Yogesh Barai
 Author-email: yogesh.barai@gmail.com
 License: UNKNOWN
 Description: # TypingTestGame
-        
-        Python based Typing Speed Test application.
+        Python based Typing Speed Test application. Include Replay feature to see how you performed.
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3.8
 Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
