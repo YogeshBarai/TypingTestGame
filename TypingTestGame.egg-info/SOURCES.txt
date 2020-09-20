@@ -2,9 +2,15 @@ MANIFEST.in
 README.md
 setup.cfg
 setup.py
+TypingTestGame/KeyPress.py
+TypingTestGame/TypingTestApp.py
+TypingTestGame/TypingTestCalculations.py
+TypingTestGame/TypingTestCmd.py
+TypingTestGame/TypingTestDB.py
+TypingTestGame/__init__.py
+TypingTestGame/__main__.py
 TypingTestGame.egg-info/PKG-INFO
 TypingTestGame.egg-info/SOURCES.txt
 TypingTestGame.egg-info/dependency_links.txt
 TypingTestGame.egg-info/entry_points.txt
 TypingTestGame.egg-info/top_level.txt
-TypingTestGame/db/TypingTest_DB.db

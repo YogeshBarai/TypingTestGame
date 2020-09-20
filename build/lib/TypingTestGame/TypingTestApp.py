@@ -3,17 +3,17 @@ import sys
 import time
 from datetime import datetime, timedelta
 import signal
-from TypingTestCalculations import TypingTestCalculations
-from TypingTestCmd import TypingTestCmd
-import KeyPress
+from TypingTestGame import TypingTestCalculations
+from TypingTestGame import TypingTestCmd
+from TypingTestGame import KeyPress
 from curses import wrapper
 import curses
 
 class TypingTestApp:
     def __init__(self):
-        self.Cmd = TypingTestCmd()
-        self.Calc = TypingTestCalculations()
-
+        self.Cmd = TypingTestCmd.TypingTestCmd()
+        self.Calc = TypingTestCalculations.TypingTestCalculations()
+        
         self.text = self.Cmd.get_text()
         self.words = self.text.split()
         self.text = " ".join(self.words)
@@ -69,13 +69,6 @@ class TypingTestApp:
         if self.lineCount > self.terminalWidth:
             self.sizeError()
 
-        curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_GREEN)
-        curses.init_pair(2, curses.COLOR_WHITE, curses.COLOR_RED)
-        curses.init_pair(3, curses.COLOR_WHITE, curses.COLOR_BLUE)
-        curses.init_pair(4, curses.COLOR_WHITE, curses.COLOR_YELLOW)
-        curses.init_pair(5, curses.COLOR_WHITE, curses.COLOR_CYAN)
-        curses.init_pair(6, curses.COLOR_WHITE, curses.COLOR_MAGENTA)
-
         winObj.nodelay(False)
         self.setPrint(winObj)
 
@@ -92,8 +85,11 @@ class TypingTestApp:
         return winObj.getmaxyx()
     
     def setPrint(self, winObj):
+        with open("TypingTestGame\GameOptions.md", encoding="utf-8") as f:
+            GAME_OPTIONS = f.read()
         winObj.addstr(0, int(self.terminalWidth / 2) - 4, " TypingTest ", curses.color_pair(3))
-        winObj.addstr(2, 0, self.text, curses.A_BOLD)
+        winObj.addstr(1, 0, GAME_OPTIONS , curses.color_pair(3))
+        winObj.addstr(6, 0, self.text, curses.A_BOLD)
 
     def start_typing_test(self, win, key):
         if not self.testStart and KeyPress.is_valid_initial_key(key):

@@ -2,11 +2,11 @@ import argparse
 import os
 import random
 import sys
-from TypingTestDB import TypingTestDB
+from TypingTestGame import TypingTestDB
 
 class TypingTestCmd:
     def __init__(self):
-        self.db = TypingTestDB()
+        self.db = TypingTestDB.TypingTestDB()
         
     def parse_arguments(self):
         parser = argparse.ArgumentParser(description="Process Typing Test Command Line Arguments")
@@ -83,6 +83,7 @@ class TypingTestCmd:
         elif args_opt.difficulty:
             file_content = self.set_difficulty_level(args_opt.difficulty)
         else:
-            print("Input correct arguments")
-        
+            print("Incorrect Arguments. Displaying random text from system.")
+            file_content = self.get_db_text_by_id(random.randint(1, 5000))
+
         return file_content
