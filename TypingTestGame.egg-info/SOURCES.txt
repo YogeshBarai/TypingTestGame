@@ -4,6 +4,7 @@ setup.cfg
 setup.py
 TypingTestGame/KeyPress.py
 TypingTestGame/TypingTestApp.py
+TypingTestGame/TypingTestAppV2.py
 TypingTestGame/TypingTestCalculations.py
 TypingTestGame/TypingTestCmd.py
 TypingTestGame/TypingTestDB.py

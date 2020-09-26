@@ -2,7 +2,7 @@ import argparse
 import os
 import random
 import sys
-from TypingTestGame import TypingTestDB
+import TypingTestDB
 
 class TypingTestCmd:
     def __init__(self):

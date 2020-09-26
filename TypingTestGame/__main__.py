@@ -1,6 +1,9 @@
-import TypingTestAppV2
+from TypingTestGame import TypingTestAppV2
 
-if __name__ == "__main__":
+def main():
+    print("Inside main")
     OBJ = TypingTestAppV2.TypingTestAppV2()
     OBJ.run()
-    
+
+if __name__ == "__main__":
+    main()

@@ -7,7 +7,7 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name="TypingTestGame",
-    version="1.0.7",
+    version="1.1.2",
     author="Yogesh Barai",
     author_email="yogesh.barai@gmail.com",
     description="A command line tool to improve typing speed",
@@ -22,6 +22,6 @@ setup(
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     ],
     entry_points={
-        'console_scripts': ['TypingTestGame=TypingTestGame.TypingTestAppV2:TypingTestAppV2']
+        'console_scripts': ['TypingTestGame=TypingTestGame.__main__:main']
     }
 )
