@@ -22,6 +22,6 @@ setup(
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     ],
     entry_points={
-        'console_scripts': ['TypingTestGame=TypingTestGame.TypingTestApp:TypingTestApp']
+        'console_scripts': ['TypingTestGame=TypingTestGame.TypingTestAppV2:TypingTestAppV2']
     }
 )

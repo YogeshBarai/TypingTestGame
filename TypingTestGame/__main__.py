@@ -1,4 +1,6 @@
-import TypingTestApp
+import TypingTestAppV2
 
 if __name__ == "__main__":
-    OBJ = TypingTestApp.TypingTestApp()
+    OBJ = TypingTestAppV2.TypingTestAppV2()
+    OBJ.run()
+    

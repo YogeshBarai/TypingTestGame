@@ -3,9 +3,9 @@ import sys
 import time
 from datetime import datetime, timedelta
 import signal
-from TypingTestGame import TypingTestCalculations
-from TypingTestGame import TypingTestCmd
-from TypingTestGame import KeyPress
+import TypingTestCalculations
+import TypingTestCmd
+import KeyPress
 from curses import wrapper
 import curses
 
