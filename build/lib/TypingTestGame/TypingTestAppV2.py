@@ -7,10 +7,9 @@ from datetime import datetime, timedelta
 #import signal
 #import TypingTestCalculations
 #import TypingTestCmd
-from TypingTestGame.TypingTestDB import TypingTestDB
+import TypingTestDB
 #import KeyPress
 import random
-import pyjokes
 
 class TypingTestAppV2:
     def __init__(self):
@@ -31,7 +30,7 @@ class TypingTestAppV2:
         self.RESULT_C = (255, 70, 70)
         self.RESET_C = (250, 250, 250)
 
-        self.db = TypingTestDB()
+        self.db = TypingTestDB.TypingTestDB()
         self.randomTextId = random.randint(1,5000)
         self.dbtext = self.db.search(self.randomTextId)
         
@@ -46,10 +45,14 @@ class TypingTestAppV2:
         self.USER_SENT_POS = (0,round(self.h/1.5))
         self.RESET_FONT = pygame.font.SysFont("Verdana", 20)
         self.RESET_POS = (self.w/2, self.h)
-        self.open_img = pygame.image.load('images/background.jpg')
+        self.curr_file_path = os.path.dirname(os.path.abspath(__file__))
+        print('/n')
+        self.curr_file_path = self.curr_file_path[:self.curr_file_path.rfind('\\')]
+        img_file_path = self.curr_file_path + r'\TypingTestGame\images\background.jpg'
+        print(img_file_path)
+        self.open_img = pygame.image.load(img_file_path)
         self.open_img = pygame.transform.scale(self.open_img, (self.w, self.h))
-
-        self.bg = pygame.image.load('images/background.jpg')
+        self.bg = pygame.image.load(img_file_path)
         self.bg = pygame.transform.scale(self.bg, (750, 500))
 
         self.screen = pygame.display.set_mode((self.w, self.h))
@@ -110,7 +113,7 @@ class TypingTestAppV2:
                 round(self.accuracy)) + "%" + '   Wpm: ' + str(round(self.wpm))
 
             # draw icon image
-            self.time_img = pygame.image.load('images/icon.png')
+            self.time_img = pygame.image.load(self.curr_file_path + r'\TypingTestGame\images\icon.png')
             self.time_img = pygame.transform.scale(self.time_img, (150, 150))
 
             #screen.blit(self.time_img, (80,320))

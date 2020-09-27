@@ -1,4 +1,4 @@
-from TypingTestGame import TypingTestAppV2
+import TypingTestAppV2
 
 def main():
     print("Inside main")

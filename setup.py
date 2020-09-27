@@ -7,7 +7,7 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name="TypingTestGame",
-    version="1.1.2",
+    version="1.1.3",
     author="Yogesh Barai",
     author_email="yogesh.barai@gmail.com",
     description="A command line tool to improve typing speed",
@@ -15,7 +15,7 @@ setup(
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
     packages=find_packages(),
-    package_data={"TypingTestGame": ["TypingTest_DB.db"]},
+    package_data={"TypingTestGame": ["TypingTest_DB.db", "images"]},
     include_package_data=True,
     classifiers=[
         "Programming Language :: Python :: 3.8",
