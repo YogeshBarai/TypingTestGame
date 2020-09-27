@@ -7,7 +7,10 @@ from datetime import datetime, timedelta
 #import signal
 #import TypingTestCalculations
 #import TypingTestCmd
-import TypingTestDB
+try:
+    from TypingTestGame import TypingTestDB
+except:
+    import TypingTestDB
 #import KeyPress
 import random
 
@@ -25,17 +28,20 @@ class TypingTestAppV2:
         self.results = 'Time:0 Accuracy:0 % Wpm:0 '
         self.wpm = 0
         self.end = False
+        self.ERROR_CHAR = 0
         self.HEAD_C = (255, 213, 102)
         self.TEXT_C = (240, 240, 240)
-        self.RESULT_C = (255, 70, 70)
-        self.RESET_C = (250, 250, 250)
-
+        self.RESULT_C = (255, 255, 255)
+        self.RESET_C = (255, 213, 102)
+        self.USER_SENT_C = (240, 240, 240)
+        self.USER_SENT_OK_C = (0, 255, 0)
+        self.USER_SENT_NOK_C = (255, 0, 0)
         self.db = TypingTestDB.TypingTestDB()
         self.randomTextId = random.randint(1,5000)
         self.dbtext = self.db.search(self.randomTextId)
         
         pygame.init()
-        self.RESULT_FONT = pygame.font.SysFont("Verdana", 20)
+        self.RESULT_FONT = pygame.font.SysFont("Verdana", 15)
         self.RESULT_POS = (0, self.h/1.5 - 50)
         self.HEADER_FONT = pygame.font.SysFont("Verdana", 20)
         self.HEADER_POS = (self.w/4, 0)
@@ -44,7 +50,7 @@ class TypingTestAppV2:
         self.USER_SENT_FONT = pygame.font.SysFont("Verdana", 20)
         self.USER_SENT_POS = (0,round(self.h/1.5))
         self.RESET_FONT = pygame.font.SysFont("Verdana", 20)
-        self.RESET_POS = (self.w/2, self.h)
+        self.RESET_POS = (self.w - 80, 0)
         self.curr_file_path = os.path.dirname(os.path.abspath(__file__))
         print('/n')
         self.curr_file_path = self.curr_file_path[:self.curr_file_path.rfind('\\')]
@@ -106,11 +112,11 @@ class TypingTestAppV2:
 
             #Calculate words per minute
             self.wpm = len(self.USER_SENT)*60/(5*self.total_time)
-            self.end = True
+            #self.end = True
             print(self.total_time)
 
-            self.results = 'Time:'+str(round(self.total_time)) + " secs   Accuracy:" + str(
-                round(self.accuracy)) + "%" + '   Wpm: ' + str(round(self.wpm))
+            self.results = 'Time: '+str(round(self.total_time)) + ' secs   Accuracy: ' + str(
+                round(self.accuracy)) + '%' + '   WPM: ' + str(round(self.wpm)) + '   Backspace used: ' + str(self.ERROR_CHAR) + ' times.'
 
             # draw icon image
             self.time_img = pygame.image.load(self.curr_file_path + r'\TypingTestGame\images\icon.png')
@@ -118,7 +124,7 @@ class TypingTestAppV2:
 
             #screen.blit(self.time_img, (80,320))
             #screen.blit(self.time_img, (self.w/2-75, self.h-140))
-            self.draw_text(screen, "Reset", self.RESET_POS, self.RESET_C, self.RESET_FONT)
+            
 
             print(self.results)
             pygame.display.update()
@@ -136,7 +142,10 @@ class TypingTestAppV2:
             # update the text of user input
             #if self.input_text != '':
             self.screen.fill((0, 0, 0), (0, round(self.h/1.5), self.w, self.h))
-            self.draw_text(self.screen, self.USER_SENT, self.USER_SENT_POS, self.TEXT_C, self.USER_SENT_FONT)
+            self.draw_text(self.screen, self.USER_SENT, self.USER_SENT_POS, self.USER_SENT_C, self.USER_SENT_FONT)
+            #self.screen.fill((0,0,0), (0, self.h/1.5 - 50, self.w, 25))
+            #self.show_results(self.screen)
+            #self.draw_text(self.screen, self.results, self.RESULT_POS, self.RESULT_C, self.RESULT_FONT)
             pygame.display.update()
             for event in pygame.event.get():
                 if event.type == QUIT:
@@ -151,7 +160,7 @@ class TypingTestAppV2:
                         self.USER_SENT = ''
                         self.time_start = time.time()
                      # position of reset box
-                    if(x >= 310 and x <= 510 and y >= 390 and self.end):
+                    if(x >= self.w - 80 and x <= self.w):
                         self.reset_game()
                         x, y = pygame.mouse.get_pos()
                 elif event.type == pygame.KEYDOWN:
@@ -163,9 +172,8 @@ class TypingTestAppV2:
                             sys.exit()
                     elif self.active and not self.end:
                         if event.key == pygame.K_RETURN:
-                            print(self.USER_SENT)
+                            self.screen.fill((0,0,0), (0, self.h/1.5 - 50, self.w, 25))
                             self.show_results(self.screen)
-                            print(self.results)
                             self.draw_text(self.screen, self.results, self.RESULT_POS, self.RESULT_C, self.RESULT_FONT)
                             self.end = True
                         elif event.key == pygame.K_BACKSPACE:
@@ -177,7 +185,12 @@ class TypingTestAppV2:
                                 self.time_start = time.time()
                             try:
                                 self.USER_SENT += event.unicode
-                                pygame.display.update()
+                                #pygame.display.update()
+                                if self.USER_SENT != self.ORG_SENT[:len(self.USER_SENT)]:
+                                    self.USER_SENT_C = self.USER_SENT_NOK_C
+                                    self.ERROR_CHAR += 1
+                                else:
+                                    self.USER_SENT_C = self.USER_SENT_OK_C
                             except:
                                 pass
             
@@ -196,6 +209,7 @@ class TypingTestAppV2:
         self.time_start = 0
         self.total_time = 0
         self.wpm = 0
+        self.ERROR_CHAR = 0
 
         # Get random sentence
         self.ORG_SENT = self.get_sentence()
@@ -208,6 +222,7 @@ class TypingTestAppV2:
 
         headerText = "Typing Test -  Improve your typing skills."
         self.draw_text(self.screen, headerText, self.HEADER_POS, self.HEAD_C, self.HEADER_FONT)
+        self.draw_text(self.screen, "Reset", self.RESET_POS, self.RESET_C, self.RESET_FONT)
 
         # draw the rectangle for input box
         #pygame.draw.rect(self.screen, (255, 192, 25), (50, 250, 650, 50), 2)

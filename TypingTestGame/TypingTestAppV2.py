@@ -32,7 +32,7 @@ class TypingTestAppV2:
         self.HEAD_C = (255, 213, 102)
         self.TEXT_C = (240, 240, 240)
         self.RESULT_C = (255, 255, 255)
-        self.RESET_C = (250, 250, 250)
+        self.RESET_C = (255, 213, 102)
         self.USER_SENT_C = (240, 240, 240)
         self.USER_SENT_OK_C = (0, 255, 0)
         self.USER_SENT_NOK_C = (255, 0, 0)
@@ -50,7 +50,7 @@ class TypingTestAppV2:
         self.USER_SENT_FONT = pygame.font.SysFont("Verdana", 20)
         self.USER_SENT_POS = (0,round(self.h/1.5))
         self.RESET_FONT = pygame.font.SysFont("Verdana", 20)
-        self.RESET_POS = (self.w/2, self.h)
+        self.RESET_POS = (self.w - 80, 0)
         self.curr_file_path = os.path.dirname(os.path.abspath(__file__))
         print('/n')
         self.curr_file_path = self.curr_file_path[:self.curr_file_path.rfind('\\')]
@@ -124,7 +124,7 @@ class TypingTestAppV2:
 
             #screen.blit(self.time_img, (80,320))
             #screen.blit(self.time_img, (self.w/2-75, self.h-140))
-            self.draw_text(screen, "Reset", self.RESET_POS, self.RESET_C, self.RESET_FONT)
+            
 
             print(self.results)
             pygame.display.update()
@@ -160,7 +160,7 @@ class TypingTestAppV2:
                         self.USER_SENT = ''
                         self.time_start = time.time()
                      # position of reset box
-                    if(x >= 310 and x <= 510 and y >= 390 and self.end):
+                    if(x >= self.w - 80 and x <= self.w):
                         self.reset_game()
                         x, y = pygame.mouse.get_pos()
                 elif event.type == pygame.KEYDOWN:
@@ -222,6 +222,7 @@ class TypingTestAppV2:
 
         headerText = "Typing Test -  Improve your typing skills."
         self.draw_text(self.screen, headerText, self.HEADER_POS, self.HEAD_C, self.HEADER_FONT)
+        self.draw_text(self.screen, "Reset", self.RESET_POS, self.RESET_C, self.RESET_FONT)
 
         # draw the rectangle for input box
         #pygame.draw.rect(self.screen, (255, 192, 25), (50, 250, 650, 50), 2)

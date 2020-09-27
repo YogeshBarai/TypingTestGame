@@ -7,7 +7,7 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name="TypingTestGame",
-    version="1.1.3",
+    version="1.1.4",
     author="Yogesh Barai",
     author_email="yogesh.barai@gmail.com",
     description="A command line tool to improve typing speed",
