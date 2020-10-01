@@ -53,8 +53,8 @@ class TypingTestAppV2:
         self.RESET_POS = (self.w - 80, 0)
         self.curr_file_path = os.path.dirname(os.path.abspath(__file__))
         print('/n')
-        self.curr_file_path = self.curr_file_path[:self.curr_file_path.rfind('\\')]
-        img_file_path = self.curr_file_path + r'\TypingTestGame\images\background.jpg'
+        #self.curr_file_path = self.curr_file_path[:self.curr_file_path.rfind('\\')]
+        img_file_path = self.curr_file_path + '/Images/background.jpg'
         print(img_file_path)
         self.open_img = pygame.image.load(img_file_path)
         self.open_img = pygame.transform.scale(self.open_img, (self.w, self.h))
@@ -119,7 +119,7 @@ class TypingTestAppV2:
                 round(self.accuracy)) + '%' + '   WPM: ' + str(round(self.wpm)) + '   Backspace used: ' + str(self.ERROR_CHAR) + ' times.'
 
             # draw icon image
-            self.time_img = pygame.image.load(self.curr_file_path + r'\TypingTestGame\images\icon.png')
+            self.time_img = pygame.image.load(self.curr_file_path + '/Images/icon.png')
             self.time_img = pygame.transform.scale(self.time_img, (150, 150))
 
             #screen.blit(self.time_img, (80,320))

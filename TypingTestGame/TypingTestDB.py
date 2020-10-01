@@ -4,13 +4,13 @@ import glob
 
 class TypingTestDB:  
     def __init__(self):
-        self.DB_NAME = r"\TypingTestGame\TypingTest_DB.db"
+        self.DB_NAME = "TypingTest_DB.db"
 
     def directory_path(self):
         curr_file_path = os.path.dirname(os.path.abspath(__file__))
         print('/n')
-        curr_file_path = curr_file_path[:curr_file_path.rfind('\\')]
-        db_file_path = curr_file_path + self.DB_NAME
+        #curr_file_path = curr_file_path[:curr_file_path.rfind('\\')]
+        db_file_path = curr_file_path + "/" + self.DB_NAME
         print(db_file_path)
         return db_file_path
 
